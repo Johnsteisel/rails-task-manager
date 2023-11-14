@@ -1,0 +1,18 @@
+<div class="container d-flex justify-content-center mt-5">
+  <div class="d-flex flex-column">
+    <h1>List of all the tasks</h1>
+    <div>
+      <ul class="list-unstyled display-content-between list-group">
+        <% @tasks.each do |task| %>
+          <div class="d-flex list-group-item">
+            <li><%= link_to "#{task.title}", task_path(task)  %></li>
+            <%= link_to task_path(task), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do %>
+              <button type="button" class="btn-close" aria-label="Close"></button>
+            <% end %>
+          </div>
+        <% end %>
+      </ul>
+    </div>
+    <%= link_to 'New task', new_task_path(@task), class:"btn btn-primary mt-5" %>
+  </div>
+</div>
